@@ -1,17 +1,22 @@
+import React, { useContext } from "react";
+import { ShopContext } from "../context";
+
 function GoodsItem(props) {
   const {
     id = props.mainId,
     name = props.displayName,
     description = props.displayDescription,
     price = props.price,
-    full_background = props.displayAssets[0].full_background,
-    addToBasket,
+    full_background = props.displayAssets?.[0]?.full_background ||
+      "https://png.pngtree.com/png-clipart/20250227/original/pngtree-question-mark-sign-asking-symbol-png-image_20524362.png",
   } = props;
+
+  const { addToBasket } = useContext(ShopContext);
 
   return (
     <div className="card">
       <div className="card-image">
-        <img src={full_background ? full_background : ""} alt={name} />
+        <img src={full_background} alt={name} />
       </div>
       <div className="card-content">
         <span className="card-title">{name}</span>
